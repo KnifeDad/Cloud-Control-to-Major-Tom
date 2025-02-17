@@ -12,4 +12,7 @@ dist/
 .idea/
 
 # Logs
-*.log 
+*.log
+
+# Additional files
+.DS_Store 

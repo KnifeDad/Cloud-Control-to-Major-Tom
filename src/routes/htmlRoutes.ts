@@ -1,12 +1,11 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import express from 'express';
+import { Router } from 'express';
+import path from 'path';
 
-const router = express.Router();
+const router = Router();
 
 // Serve the static files
-router.get('/', (_req, res) => {
-  res.sendFile(join(__dirname, '../../public/index.html'));
+router.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 export default router; 

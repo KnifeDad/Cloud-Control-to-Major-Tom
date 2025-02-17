@@ -3,22 +3,25 @@ import axios from 'axios';
 
 dotenv.config();
 
-interface Coordinates {
-  lat: number;
-  lon: number;
-}
-
-interface Weather {
-  temperature: number;
-  conditions: string;
-}
-
 interface WeatherResponse {
   city: {
     id: string;
     name: string;
   };
-  weather: Weather;
+  list: Array<{
+    dt: number;
+    main: {
+      temp: number;
+      humidity: number;
+    };
+    weather: Array<{
+      icon: string;
+      description: string;
+    }>;
+    wind: {
+      speed: number;
+    };
+  }>;
 }
 
 export class WeatherService {
@@ -27,22 +30,27 @@ export class WeatherService {
 
   static async getWeatherData(city: string): Promise<WeatherResponse> {
     try {
-      const response = await axios.get(
-        `${this.BASE_URL}/weather?q=${city}&appid=${this.API_KEY}&units=metric`
-      );
+      if (!this.API_KEY) {
+        throw new Error('OpenWeather API key is not configured');
+      }
 
-      return {
-        city: {
-          id: response.data.id,
-          name: response.data.name
-        },
-        weather: {
-          temperature: response.data.main.temp,
-          conditions: response.data.weather[0].main
-        }
-      };
+      const url = `${this.BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${this.API_KEY}&units=metric`;
+      const response = await axios.get(url);
+
+      // Basic validation
+      if (!response.data || !response.data.list) {
+        throw new Error('Invalid response format from weather API');
+      }
+
+      return response.data;
     } catch (error) {
-      throw new Error('Failed to fetch weather data');
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          throw new Error('API key is inactive or invalid');
+        }
+        throw new Error(`Weather API error: ${error.response?.data?.message || error.message}`);
+      }
+      throw error;
     }
   }
 } 
