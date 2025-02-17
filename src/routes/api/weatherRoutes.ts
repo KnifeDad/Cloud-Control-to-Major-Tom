@@ -4,20 +4,16 @@ import { HistoryService } from '../../service/historyService.js';
 
 const router = Router();
 
-// Define interfaces for better type safety
 interface City {
   id: string;
   name: string;
 }
 
 interface Weather {
-  // Add weather properties based on your API response
   temperature: number;
   conditions: string;
-  // ... other weather properties
 }
 
-// POST Request with city name to retrieve weather data
 router.post('/', (req, res) => {
   const { city } = req.body;
   
@@ -34,7 +30,6 @@ router.post('/', (req, res) => {
     });
 });
 
-// GET search history
 router.get('/history', (_req, res) => {
   HistoryService.getCities()
     .then((cities) => {
@@ -46,7 +41,6 @@ router.get('/history', (_req, res) => {
     });
 });
 
-// DELETE city from search history
 router.delete('/history/:id', (req, res) => {
   const { id } = req.params;
   
@@ -60,4 +54,4 @@ router.delete('/history/:id', (req, res) => {
     });
 });
 
-export default router;
+export default router; 
