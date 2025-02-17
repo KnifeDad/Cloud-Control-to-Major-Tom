@@ -5,15 +5,32 @@ A modern weather dashboard application that provides current weather conditions 
 ## Live Demo 🌐
 
 Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com)
+Screenshot: "C:\Users\boopy\OneDrive\Pictures\Screenshots 1\Cloud Control finished.png"
 
 # Cloud-Control-to-Major-Tom
 A weather dashboard application that calls the OpenWeather API and renders data in the browser
 
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/KnifeDad/cloud-control-major-tom.git
+```
+
 2. Install dependencies:
+```bash
+npm install
+```
 
 3. Create a `.env` file in the root directory and add your OpenWeather API key:
+```env
+OPENWEATHER_API_KEY=your_api_key_here
+```
 
 4. Start the development server:
+```bash
+npm run dev
+```
 
 5. Open your browser and navigate to `http://localhost:3000`
 
