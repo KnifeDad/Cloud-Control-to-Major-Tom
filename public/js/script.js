@@ -91,25 +91,42 @@ document.addEventListener('DOMContentLoaded', () => {
         // Render current weather
         const current = weatherData.list[0];
         currentWeather.innerHTML = `
-            <h2>${weatherData.city.name} (${new Date(current.dt * 1000).toLocaleDateString()})</h2>
-            <img src="http://openweathermap.org/img/w/${current.weather[0].icon}.png" 
-                 alt="${current.weather[0].description}">
-            <p>Temperature: ${current.main.temp}°C</p>
-            <p>Humidity: ${current.main.humidity}%</p>
-            <p>Wind Speed: ${current.wind.speed} m/s</p>
+            <div class="text-center">
+                <h2 class="mb-4">${weatherData.city.name} <small class="text-light">(${new Date(current.dt * 1000).toLocaleDateString()})</small></h2>
+                <img src="http://openweathermap.org/img/w/${current.weather[0].icon}.png" 
+                     alt="${current.weather[0].description}"
+                     class="weather-icon mb-3">
+                <div class="temperature">${Math.round(current.main.temp)}°C</div>
+                <div class="conditions">${current.weather[0].description}</div>
+                <div class="row mt-4">
+                    <div class="col-4">
+                        <div class="text-uppercase small">Humidity</div>
+                        <div class="fs-5">${current.main.humidity}%</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-uppercase small">Wind</div>
+                        <div class="fs-5">${current.wind.speed} m/s</div>
+                    </div>
+                </div>
+            </div>
         `;
 
         // Render 5-day forecast
         const dailyForecasts = weatherData.list.filter((item, index) => index % 8 === 0).slice(0, 5);
         forecast.innerHTML = dailyForecasts
             .map(day => `
-                <div class="forecast-day">
-                    <h3>${new Date(day.dt * 1000).toLocaleDateString()}</h3>
-                    <img src="http://openweathermap.org/img/w/${day.weather[0].icon}.png" 
-                         alt="${day.weather[0].description}">
-                    <p>Temp: ${day.main.temp}°C</p>
-                    <p>Wind: ${day.wind.speed} m/s</p>
-                    <p>Humidity: ${day.main.humidity}%</p>
+                <div class="col">
+                    <div class="forecast-day">
+                        <h3 class="h6">${new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' })}</h3>
+                        <img src="http://openweathermap.org/img/w/${day.weather[0].icon}.png" 
+                             alt="${day.weather[0].description}"
+                             class="weather-icon">
+                        <div class="fs-4">${Math.round(day.main.temp)}°C</div>
+                        <div class="small text-muted">
+                            <div>Wind: ${day.wind.speed} m/s</div>
+                            <div>Humidity: ${day.main.humidity}%</div>
+                        </div>
+                    </div>
                 </div>
             `)
             .join('');

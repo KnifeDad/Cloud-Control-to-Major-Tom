@@ -23,7 +23,6 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
 
 // Add request logging middleware
 app.use((req, res, next) => {
@@ -37,8 +36,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// TODO: Implement middleware to connect the routes
+// Routes should come before static files
 app.use(routes);
+
+// Static files should be served last
+app.use(express.static('public'));
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

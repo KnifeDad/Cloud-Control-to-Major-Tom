@@ -30,6 +30,12 @@ export class WeatherService {
 
   static async getWeatherData(city: string): Promise<WeatherResponse> {
     try {
+      // TEMPORARY DEBUG - Remove after fixing
+      console.log('Environment check:', {
+        hasKey: !!process.env.OPENWEATHER_API_KEY,
+        keyLength: process.env.OPENWEATHER_API_KEY?.length
+      });
+
       if (!this.API_KEY) {
         throw new Error('OpenWeather API key is not configured');
       }
