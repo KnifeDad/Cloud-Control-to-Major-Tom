@@ -1,19 +1,65 @@
 # Cloud Control to Major Tom 🚀
 
-A modern weather dashboard application that provides current weather conditions and 5-day forecasts for cities worldwide.
+A modern weather dashboard application that provides current weather conditions and 5-day forecasts for cities around the world.
 
 ## Live Demo 🌐
 
 Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com)
 
-# Cloud-Control-to-Major-Tom
-A weather dashboard application that calls the OpenWeather API and renders data in the browser
+![Weather Dashboard Screenshot](screenshot.png)
+
+## Features ✨
+
+- **Real-time Weather Data**: Get current weather conditions including temperature, humidity, and wind speed
+- **5-Day Forecast**: View weather predictions for the next five days
+- **Search History**: Keep track of your recently searched cities
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Clean Interface**: Modern, intuitive user interface with smooth animations
+
+## Technologies Used 🛠
+
+- **Frontend**:
+  - HTML5
+  - CSS3 with modern features
+  - JavaScript
+  - Bootstrap 5
+  - Custom animations and transitions
+
+- **Backend**:
+  - Node.js
+  - Express.js
+  - TypeScript
+  - OpenWeather API
+
+## Getting Started 🚀
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm
+- OpenWeather API key
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/KnifeDad/cloud-control-major-tom.git
+```
 
 2. Install dependencies:
+```bash
+npm install
+```
 
 3. Create a `.env` file in the root directory and add your OpenWeather API key:
+```env
+OPENWEATHER_API_KEY=your_api_key_here
+```
 
 4. Start the development server:
+```bash
+npm run dev
+```
 
 5. Open your browser and navigate to `http://localhost:3000`
 
@@ -52,4 +98,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact 📫
 
-Project Link: [https://github.com/KnifeDad/cloud-control-major-tom](https://github.com/KnifeDad/cloud-control-major-tom)
+Project Link: [https://github.com/KnifeDad/Cloud-Control-to-Major-Tom](https://github.com/KnifeDad/Cloud-Control-to-Major-Tom)

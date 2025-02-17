@@ -5,7 +5,7 @@ import { HistoryService } from '../../service/historyService';
 const router = Router();
 
 const postWeather = async (req: Request, res: Response): Promise<void> => {
-  const { city } = req.body;
+  const { city, units } = req.body;
   
   if (!city) {
     res.status(400).json({ error: 'City name is required' });
@@ -13,7 +13,7 @@ const postWeather = async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
-    const weatherData = await WeatherService.getWeatherData(city);
+    const weatherData = await WeatherService.getWeatherData(city, units);
     await HistoryService.addCity({
       id: String(weatherData.city.id),
       name: weatherData.city.name

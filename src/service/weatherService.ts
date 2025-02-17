@@ -28,22 +28,15 @@ export class WeatherService {
   private static readonly API_KEY = process.env.OPENWEATHER_API_KEY;
   private static readonly BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
-  static async getWeatherData(city: string): Promise<WeatherResponse> {
+  static async getWeatherData(city: string, units: 'metric' | 'imperial' = 'metric'): Promise<WeatherResponse> {
     try {
-      // TEMPORARY DEBUG - Remove after fixing
-      console.log('Environment check:', {
-        hasKey: !!process.env.OPENWEATHER_API_KEY,
-        keyLength: process.env.OPENWEATHER_API_KEY?.length
-      });
-
       if (!this.API_KEY) {
         throw new Error('OpenWeather API key is not configured');
       }
 
-      const url = `${this.BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${this.API_KEY}&units=metric`;
+      const url = `${this.BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${this.API_KEY}&units=${units}`;
       const response = await axios.get(url);
 
-      // Basic validation
       if (!response.data || !response.data.list) {
         throw new Error('Invalid response format from weather API');
       }

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentWeather = document.getElementById('current-weather');
     const forecast = document.getElementById('forecast');
     const searchHistory = document.getElementById('search-history');
+    const tempUnitToggle = document.getElementById('temp-unit-toggle');
+    let useMetric = true; // Default to Celsius
 
     // Load search history on page load
     loadSearchHistory();
@@ -14,6 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (city) {
             await getWeatherData(city);
             cityInput.value = '';
+        }
+    });
+
+    tempUnitToggle.addEventListener('click', () => {
+        useMetric = !useMetric;
+        tempUnitToggle.textContent = `Switch to ${useMetric ? '°F' : '°C'}`;
+        // Refresh weather data if we have a city displayed
+        if (currentWeather.innerHTML) {
+            const cityName = currentWeather.querySelector('h2').textContent.split(' ')[0];
+            getWeatherData(cityName);
         }
     });
 
@@ -61,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ city })
+                body: JSON.stringify({ 
+                    city,
+                    units: useMetric ? 'metric' : 'imperial'
+                })
             });
 
             const data = await response.json();
@@ -90,13 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderWeather(weatherData) {
         // Render current weather
         const current = weatherData.list[0];
+        const tempUnit = useMetric ? '°C' : '°F';
+        const speedUnit = useMetric ? 'm/s' : 'mph';
+
         currentWeather.innerHTML = `
             <div class="text-center">
                 <h2 class="mb-4">${weatherData.city.name} <small class="text-light">(${new Date(current.dt * 1000).toLocaleDateString()})</small></h2>
                 <img src="http://openweathermap.org/img/w/${current.weather[0].icon}.png" 
                      alt="${current.weather[0].description}"
                      class="weather-icon mb-3">
-                <div class="temperature">${Math.round(current.main.temp)}°C</div>
+                <div class="temperature">${Math.round(current.main.temp)}${tempUnit}</div>
                 <div class="conditions">${current.weather[0].description}</div>
                 <div class="row mt-4">
                     <div class="col-4">
@@ -105,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="col-4">
                         <div class="text-uppercase small">Wind</div>
-                        <div class="fs-5">${current.wind.speed} m/s</div>
+                        <div class="fs-5">${current.wind.speed} ${speedUnit}</div>
                     </div>
                 </div>
             </div>
@@ -121,9 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="http://openweathermap.org/img/w/${day.weather[0].icon}.png" 
                              alt="${day.weather[0].description}"
                              class="weather-icon">
-                        <div class="fs-4">${Math.round(day.main.temp)}°C</div>
+                        <div class="fs-4">${Math.round(day.main.temp)}${tempUnit}</div>
                         <div class="small text-muted">
-                            <div>Wind: ${day.wind.speed} m/s</div>
+                            <div>Wind: ${day.wind.speed} ${speedUnit}</div>
                             <div>Humidity: ${day.main.humidity}%</div>
                         </div>
                     </div>
@@ -131,4 +149,4 @@ document.addEventListener('DOMContentLoaded', () => {
             `)
             .join('');
     }
-}); 
+});
