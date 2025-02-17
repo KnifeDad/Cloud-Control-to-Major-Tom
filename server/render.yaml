@@ -2,8 +2,9 @@ services:
   - type: web
     name: cloud-control-to-major-tom
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: npm run render-build
     startCommand: npm start
+    rootDirectory: server
     envVars:
       - key: OPENWEATHER_API_KEY
         sync: false 
