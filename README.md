@@ -5,7 +5,6 @@ A modern weather dashboard application that provides current weather conditions 
 ## Live Demo 🌐
 
 Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com)
-Screenshot: "C:\Users\boopy\OneDrive\Pictures\Screenshots 1\Cloud Control finished.png"
 
 # Cloud-Control-to-Major-Tom
 A weather dashboard application that calls the OpenWeather API and renders data in the browser
