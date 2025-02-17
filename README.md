@@ -4,7 +4,7 @@ A modern weather dashboard application that provides current weather conditions 
 
 ## Live Demo 🌐
 
-Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com)
+Check out the live application: [Cloud Control to Major Tom]((https://github.com/KnifeDad/Cloud-Control-to-Major-Tom))
 
 ![Weather Dashboard Screenshot](screenshot.png)
 
@@ -38,6 +38,13 @@ Check out the live application: [Cloud Control to Major Tom](https://cloud-contr
 - Node.js (v14 or higher)
 - npm
 - OpenWeather API key
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/KnifeDad/cloud-control-major-tom.git
+```
 
 ### Installation
 
