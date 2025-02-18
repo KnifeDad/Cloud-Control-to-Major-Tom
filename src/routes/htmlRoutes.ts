@@ -3,7 +3,6 @@ import path from 'path';
 
 const router = Router();
 
-// Serve the static files
 router.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
