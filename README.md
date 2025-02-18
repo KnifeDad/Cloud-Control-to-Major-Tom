@@ -4,7 +4,7 @@ A modern weather dashboard application that provides current weather conditions 
 
 ## Live Demo 🌐
 
-Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com)
+Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com/)
 
 ## Features ✨
 
