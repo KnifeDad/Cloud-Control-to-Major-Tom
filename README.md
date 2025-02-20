@@ -5,6 +5,7 @@ A modern weather dashboard application that provides current weather conditions 
 ## Live Demo 🌐
 
 Check out the live application: [Cloud Control to Major Tom](https://cloud-control-to-major-tom.onrender.com/)
+![Cloud Control Tokyo 1](https://github.com/user-attachments/assets/248adacb-a160-4609-82f0-32979a351963)
 
 ## Features ✨
 
